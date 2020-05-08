@@ -7,7 +7,6 @@ import './header.styles.scss';
 import { auth } from '../../firebase/firebase.utils';
 
 const Header = ({ currentUser }) => {
-  console.log(currentUser);
   return (
     <div className="header">
       <Link className="logo-container" to="/">
