@@ -44,11 +44,11 @@ class App extends Component {
   }
 
   render() {
-    const { currentUser } = this.props;
+    const { currentUser, hidden } = this.props;
 
     return (
       <div>
-        <Header currentUser={currentUser} />
+        <Header currentUser={currentUser} hidden={hidden} />
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
@@ -64,8 +64,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentUser: state.user.currentUser
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden
 });
 
 const mapDispatchToProps = dispatch => ({
