@@ -5,6 +5,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 import { setCurrentUser } from './redux/user/user.actions';
+import { selectCurrentUser } from './redux/user/user.selector';
+import { selectCartHidden } from './redux/cart/cart.selector';
 
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
@@ -12,6 +14,7 @@ import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.com
 import Header from './components/header/header.component';
 
 import './App.css';
+import { createStructuredSelector } from 'reselect';
 
 class App extends Component {
   state = {
@@ -64,9 +67,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  currentUser,
-  hidden
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden
 });
 
 const mapDispatchToProps = dispatch => ({
