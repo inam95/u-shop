@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
 
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
@@ -15,7 +16,6 @@ import Header from './components/header/header.component';
 import Checkout from './pages/checkout/checkout.component';
 
 import './App.css';
-import { createStructuredSelector } from 'reselect';
 
 class App extends Component {
   state = {
@@ -37,9 +37,9 @@ class App extends Component {
             ...snapShot.data()
           });
         });
-      } else {
-        setCurrentUser(userAuth);
       }
+
+      setCurrentUser(userAuth);
     });
   }
 
